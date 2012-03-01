@@ -80,7 +80,7 @@ function check_dpkg_packages() {
     OS_PKGS=${DEBIAN_PKGS}
   fi
   for i in ${OS_PKGS}; do
-    PKG_RES=$(dpkg-query -W -f='${Status}\n' subversion | grep -E "^install" ${i} 2>/dev/null)
+    PKG_RES=$(dpkg-query -W -f='${Status}\n' ${i} | grep -E "^install" 2>/dev/null)
     if [[ $PKG_RES == "" ]]; then
 #    if [ $(echo $PKG_RES | grep "No package") ]; then
       MISSING_PKGS="${MISSING_PKGS} ${i}"
